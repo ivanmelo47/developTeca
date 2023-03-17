@@ -14,6 +14,7 @@
 
     </div>
     <div class="card-body">
+        <!-- Tabla -->
         <div class="table-responsive-sm">
             <table class="table">
                 <thead>

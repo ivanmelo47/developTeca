@@ -54,12 +54,14 @@
                     <option value="">Jakarta</option>
                 </select>
             </div>
-            <!--  -->
+            <!-- Entrada Fecha de ingreso -->
             <div class="mb-3">
               <label for="fechadeingreso" class="form-label">Fecha de ingreso</label>
               <input type="date" class="form-control" name="fechadeingreso" id="fechadeingreso" aria-describedby="emailHelpId" placeholder="Fecha de ingreso">
             </div>
-
+            <!-- Boton agregar -->
+            <button type="submit" class="btn btn-success">Agregar Registro</button>
+            <a name="" id="" class="btn btn-primary" href="index.php" role="button">Cancelar</a>
         </form>
     
     </div>
