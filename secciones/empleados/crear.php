@@ -63,8 +63,8 @@
             <button type="submit" class="btn btn-success">Agregar Registro</button>
             <a name="" id="" class="btn btn-primary" href="index.php" role="button">Cancelar</a>
         </form>
-    
     </div>
+    <div class="card-footer text-muted"></div>
 </div>
 
 <?php include("../../templates/footer.php"); ?>

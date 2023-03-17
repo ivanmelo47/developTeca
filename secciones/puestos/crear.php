@@ -1,3 +1,22 @@
+<?php 
+/* Llamdo al archivo bd.php que me conecta a mi base de datos */
+include("../../bd.php");
+
+/*  */
+if ($_POST) {
+    /* Recolectamos los datos del metodo POST */
+    $nombredelpuesto=(isset($_POST["nombredelpuesto"])?$_POST["nombredelpuesto"]:"");
+    /* Preparar la inserccion de los datos */
+    $sentencia=$conexion->prepare("INSERT INTO tbl_puestos(id,nombredelpuesto) VALUES (null, :nombredelpuesto)");
+    /* Asignando los valores que viene del metodo POST (Los que viene del formulario) */
+    $sentencia->bindParam(":nombredelpuesto", $nombredelpuesto);
+    /* Ejecucion de la sentencia (Es aqui donde finalmente se insertan los datos en la tabla) */
+    $sentencia->execute();
+    /* Esto nos regresa al listado de puestos */
+    header("Location:index.php");
+}
+?> 
+
 <?php include("../../templates/header.php"); ?>
 <br />
 <h4>Crear Puestos</h4>
