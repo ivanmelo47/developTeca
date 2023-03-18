@@ -13,7 +13,7 @@ if (isset($_GET['txtID'])) {
     $sentencia->execute();
     /* 'FETCH_LAZY' sirve para solo cargar un registro */
     $registro = $sentencia->fetch(PDO::FETCH_LAZY);
-    /*  */
+    /* Aquie se llenan nuestra variables con los datos necesarios para llenar el formulario de edicion */
     $nombredelpuesto = $registro["nombredelpuesto"];
 }
 /* Sentencia para llevar a cabo la edicion de los datos */
@@ -31,7 +31,6 @@ if ($_POST) {
     /* Esto nos regresa al listado de puestos */
     header("Location:index.php");
 }
-
 ?> 
 
 <?php include("../../templates/header.php"); ?>
@@ -61,7 +60,7 @@ if ($_POST) {
                 value="<?php echo $nombredelpuesto; ?>"
                 class="form-control" name="nombredelpuesto" id="nombredelpuesto" aria-describedby="helpId" placeholder="Nombre del puesto">
             </div>
-            <!-- Boton agregar puesto -->
+            <!-- Boton aplicar cambios al puesto -->
             <button type="submit" class="btn btn-success">Aplicar cambios</button>
             <!-- Boton cancelar accion -->
             <a name="" id="" class="btn btn-primary" href="index.php" role="button">Cancelar</a>
