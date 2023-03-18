@@ -1,3 +1,26 @@
+<?php 
+/* Llamdo al archivo bd.php que me conecta a mi base de datos */
+include("../../bd.php");
+
+/* Sentencia para insertar datos en la tabla 'tbl_puesto' */
+if ($_POST) {
+    /* Recolectamos los datos del metodo POST */
+    $usuario=(isset($_POST["usuario"])?$_POST["usuario"]:"");
+    $password=(isset($_POST["password"])?$_POST["password"]:"");
+    $correo=(isset($_POST["correo"])?$_POST["correo"]:"");
+    /* Preparar la inserccion de los datos */
+    $sentencia=$conexion->prepare("INSERT INTO tbl_usuarios(id,usuario,password,correo) VALUES (null, :usuario, :password, :correo)");
+    /* Asignando los valores que viene del metodo POST (Los que viene del formulario) */
+    $sentencia->bindParam(":usuario", $usuario);
+    $sentencia->bindParam(":password", $password);
+    $sentencia->bindParam(":correo", $correo);
+    /* Ejecucion de la sentencia (Es aqui donde finalmente se insertan los datos en la tabla) */
+    $sentencia->execute();
+    /* Esto nos regresa al listado de usuarios */
+    header("Location:index.php");
+}
+?> 
+
 <?php include("../../templates/header.php"); ?>
 <br />
 
@@ -13,9 +36,9 @@
         <form action="" method="post" enctype="multipart/form-data">
             <!-- Entrada nombre del usuario -->
             <div class="mb-3">
-              <label for="usario" class="form-label">Nombre del usuario:</label>
+              <label for="usuario" class="form-label">Nombre del usuario:</label>
               <input type="text"
-                class="form-control" name="usario" id="usario" aria-describedby="helpId" placeholder="Nombre del usuario">
+                class="form-control" name="usuario" id="usuario" aria-describedby="helpId" placeholder="Nombre del usuario">
             </div>
             <!-- Entrada contraseña del usuario -->
             <div class="mb-3">
@@ -27,7 +50,7 @@
             <div class="mb-3">
               <label for="correo" class="form-label">Correo:</label>
               <input type="email"
-                class="form-control" name="nombredelusario" id="correo" aria-describedby="helpId" placeholder="Correo">
+                class="form-control" name="correo" id="correo" aria-describedby="helpId" placeholder="Correo">
             </div>
             <!-- Boton agregar puesto -->
             <button type="submit" class="btn btn-success">Agregar</button>

@@ -1,8 +1,9 @@
 <?php 
 /* Llamdo al archivo bd.php que me conecta a mi base de datos */
 include("../../bd.php");
-
+/* -------------------------------------- */
 /* Sentencia para eliminar un registro */
+/* -------------------------------------- */
 if (isset($_GET['txtID'])) {
     $txtID=(isset($_GET['txtID']))?$_GET['txtID']:"";
     /* Preparar la eliminacion de los datos */
@@ -15,6 +16,9 @@ if (isset($_GET['txtID'])) {
     header("Location:index.php");
 }
 
+/* -------------------------------------------------------- */
+/* Sentencia para listar los datos en la tabla del index */
+/* -------------------------------------------------------- */
 /* Creo una sentencia donde listo todos los registros de mi tabla tbl_puestos */
 $sentencia=$conexion->prepare("SELECT * FROM `tbl_puestos`"); 
 

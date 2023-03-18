@@ -2,7 +2,7 @@
 /* Llamdo al archivo bd.php que me conecta a mi base de datos */
 include("../../bd.php");
 
-/*  */
+/* Sentencia para insertar datos en la tabla 'tbl_puesto' */
 if ($_POST) {
     /* Recolectamos los datos del metodo POST */
     $nombredelpuesto=(isset($_POST["nombredelpuesto"])?$_POST["nombredelpuesto"]:"");

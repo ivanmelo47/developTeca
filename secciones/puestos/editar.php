@@ -16,6 +16,21 @@ if (isset($_GET['txtID'])) {
     /*  */
     $nombredelpuesto = $registro["nombredelpuesto"];
 }
+/* Sentencia para llevar a cabo la edicion de los datos */
+if ($_POST) {
+    /* Recolectamos los datos del metodo POST */
+    $txtID=(isset($_POST['txtID']))?$_POST['txtID']:"";
+    $nombredelpuesto=(isset($_POST["nombredelpuesto"])?$_POST["nombredelpuesto"]:"");
+    /* Preparar la actualizacion de los datos */
+    $sentencia=$conexion->prepare("UPDATE tbl_puestos SET nombredelpuesto=:nombredelpuesto WHERE id=:id ");
+    /* Asignando los valores que viene del metodo POST (Los que viene del formulario) */
+    $sentencia->bindParam(":nombredelpuesto", $nombredelpuesto);
+    $sentencia->bindParam(":id", $txtID);
+    /* Ejecucion de la sentencia (Es aqui donde finalmente se actualizan los datos en la tabla) */
+    $sentencia->execute();
+    /* Esto nos regresa al listado de puestos */
+    header("Location:index.php");
+}
 
 ?> 
 
