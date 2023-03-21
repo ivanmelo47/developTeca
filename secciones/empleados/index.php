@@ -1,3 +1,22 @@
+<?php 
+/* Llamdo al archivo bd.php que me conecta a mi base de datos */
+include("../../bd.php");
+
+/* -------------------------------------------------------- */
+/* Sentencia para listar los datos en la tabla del index */
+/* -------------------------------------------------------- */
+/* Creo una sentencia donde listo todos los registros de mi tabla tbl_puestos */
+$sentencia=$conexion->prepare("SELECT *,
+(SELECT nombredelpuesto 
+FROM tbl_puestos 
+WHERE tbl_puestos.id=tbl_empleados.idpuesto limit 1) as puesto 
+FROM `tbl_empleados`"); 
+/* Ejecute la sentencia anteriormente creada */
+$sentencia->execute();
+/* Creacion de una lista de la tbl_usuarios en la cual se guardaran todos los registros de la tabla*/
+$lista_tbl_empleados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+?> 
+
 <?php include("../../templates/header.php"); ?>
 <br />
 <h4>Empleados</h4>
@@ -19,6 +38,7 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th class="col">ID</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Foto</th>
                         <th scope="col">CV</th>
@@ -28,18 +48,27 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- Uso de un ciclo 'foreach' para imprimir cada uno de los registros guardados en la lista "$lista_tbl_usuarios" dinamicamente -->
+                <?php foreach ($lista_tbl_empleados as $registro) { ?>
                     <tr class="">
-                        <td scope="row">Oscar Uh</td>
-                        <td>imagen.jpg</td>
-                        <td>cv.pdf</td>
-                        <td>Programador Sr.</td>
-                        <td>03/16/2023</td>
+                        <td><?php echo $registro['id'] ?></td>
+                        <td scope="row">
+                            <?php echo $registro['primernombre'] ?>
+                            <?php echo $registro['segundonombre'] ?>
+                        </td>
                         <td>
-                             <a name="" id="" class="btn btn-primary" href="#" role="button">Carta</a>
-                            |<a name="" id="" class="btn btn-info" href="#" role="button">Editar</a>
-                            |<a name="" id="" class="btn btn-danger" href="#" role="button">Eliminar</a>
+                            <img width="50px" src="./fotosEmpleados/<?php echo $registro['foto'] ?>" class="img-fluid rounded" alt=""/>
+                        </td>
+                        <td><?php echo $registro['cv'] ?></td>
+                        <td><?php echo $registro['puesto'] ?></td>
+                        <td><?php echo $registro['fechadeingreso'] ?></td>
+                        <td>
+                            | <a name="" id="" class="btn btn-primary" href="#" role="button">Carta</a>
+                            | <a class="btn btn-info" href="editar.php?txtID=<?php echo $registro['id'] ?>" role="button">Editar</a>
+                            | <a class="btn btn-danger" href="index.php?txtID=<?php echo $registro['id'] ?>" role="button">Eliminar</a>
                         </td>
                     </tr>
+                <?php } ?>
                 </tbody>
             </table>
         </div>
