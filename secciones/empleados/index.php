@@ -1,6 +1,20 @@
 <?php 
 /* Llamdo al archivo bd.php que me conecta a mi base de datos */
 include("../../bd.php");
+/* -------------------------------------- */
+/* Sentencia para eliminar un registro */
+/* -------------------------------------- */
+if (isset($_GET['txtID'])) {
+    $txtID=(isset($_GET['txtID']))?$_GET['txtID']:"";
+    /* Preparar la eliminacion de los datos */
+    $sentencia=$conexion->prepare("DELETE FROM tbl_empleados WHERE id=:id");
+    /* Asignando los valores que viene del metodo POST (Los que viene del formulario) */
+    $sentencia->bindParam(":id", $txtID);
+    /* Ejecucion de la sentencia (Es aqui donde finalmente se eliminan los datos en la tabla) */
+    $sentencia->execute();
+    /* Esto nos regresa al listado de puestos */
+    header("Location:index.php");
+}
 
 /* -------------------------------------------------------- */
 /* Sentencia para listar los datos en la tabla del index */
@@ -59,13 +73,15 @@ $lista_tbl_empleados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
                         <td>
                             <img width="50px" src="./fotosEmpleados/<?php echo $registro['foto'] ?>" class="img-fluid rounded" alt=""/>
                         </td>
-                        <td><?php echo $registro['cv'] ?></td>
+                        <td>
+                            <a class="btn btn-danger" href="verpdf.php?docnom=<?php echo $registro['cv'] ?>" role="button" target="_blank"><i class="bi bi-file-pdf-fill"></i></a><!-- Boton editar -->
+                        </td>
                         <td><?php echo $registro['puesto'] ?></td>
                         <td><?php echo $registro['fechadeingreso'] ?></td>
                         <td>
-                            | <a name="" id="" class="btn btn-primary" href="#" role="button">Carta</a>
-                            | <a class="btn btn-info" href="editar.php?txtID=<?php echo $registro['id'] ?>" role="button">Editar</a>
-                            | <a class="btn btn-danger" href="index.php?txtID=<?php echo $registro['id'] ?>" role="button">Eliminar</a>
+                            | <a name="" id="" class="btn btn-primary" href="#" role="button"><i class="bi bi-file-text-fill"></i></a><!-- Generar carta -->
+                            | <a class="btn btn-info" href="editar.php?txtID=<?php echo $registro['id'] ?>" role="button"><i class="bi bi-pencil-fill"></i></a><!-- Boton editar -->
+                            | <a class="btn btn-danger" href="index.php?txtID=<?php echo $registro['id'] ?>" role="button"><i class="bi bi-trash3-fill"></i></a><!-- Boton eliminar -->
                         </td>
                     </tr>
                 <?php } ?>
