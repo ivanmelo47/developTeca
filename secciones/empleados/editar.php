@@ -70,7 +70,7 @@ if ($_POST) {
 
     $nombreArchivo_foto=($foto!='')?$fecha_->getTimestamp()."_".$_FILES["foto"]["name"]:"";
     $tmp_foto=$_FILES["foto"]["tmp_name"];
-    
+
     if ($tmp_foto!='') {
       move_uploaded_file($tmp_foto,"./fotosEmpleados/".$nombreArchivo_foto);
 
@@ -92,8 +92,15 @@ if ($_POST) {
       $sentencia->bindParam(":id", $txtID);
       $sentencia->execute();
     }
+    
   /* --INTRUCCIONES PARA CAMBIAR EL CV.PDF Y ELIMINAR EL ANTERIOR-- */
   $cv=(isset($_FILES["cv"]["name"])?$_FILES["cv"]["name"]:"");
+  $nombreArchivo_cv=($cv!='')?$fecha_->getTimestamp()."_".$_FILES["cv"]["name"]:"";
+    $tmp_cv=$_FILES["cv"]["tmp_name"];
+    if ($tmp_cv!='') {
+      move_uploaded_file($tmp_cv,"./cvEmpleados/".$nombreArchivo_cv);
+    }
+
   /* ----------------------------------------------------------------< */
 
   //header("Location:index.php");
