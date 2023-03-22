@@ -38,15 +38,16 @@ if ($_POST) {
     if ($tmp_foto!='') {
       move_uploaded_file($tmp_foto,"./fotosEmpleados/".$nombreArchivo_foto);
     }
+    $sentencia->bindParam(":foto", $nombreArchivo_foto);
     /* Codigo para adjuntar el CV en pdf */
     $nombreArchivo_cv=($cv!='')?$fecha_->getTimestamp()."_".$_FILES["cv"]["name"]:"";
     $tmp_cv=$_FILES["cv"]["tmp_name"];
     if ($tmp_cv!='') {
       move_uploaded_file($tmp_cv,"./cvEmpleados/".$nombreArchivo_cv);
     }
-    /* ----------------------------- */
-    $sentencia->bindParam(":foto", $nombreArchivo_foto);
     $sentencia->bindParam(":cv", $nombreArchivo_cv);
+    /* ----------------------------- */
+    
 
     $sentencia->bindParam(":idpuesto", $idpuesto);
     $sentencia->bindParam(":fechadeingreso", $fechadeingreso);

@@ -6,14 +6,32 @@ include("../../bd.php");
 /* -------------------------------------- */
 if (isset($_GET['txtID'])) {
     $txtID=(isset($_GET['txtID']))?$_GET['txtID']:"";
-    /* Preparar la eliminacion de los datos */
-    $sentencia=$conexion->prepare("DELETE FROM tbl_empleados WHERE id=:id");
-    /* Asignando los valores que viene del metodo POST (Los que viene del formulario) */
-    $sentencia->bindParam(":id", $txtID);
-    /* Ejecucion de la sentencia (Es aqui donde finalmente se eliminan los datos en la tabla) */
+    
+    /* Buscar el archivo relacionado con el empleado */
+    $sentencia=$conexion->prepare("SELECT foto,cv FROM `tbl_empleados` WHERE id=:id");
+    $sentencia->bindParam(":id",$txtID); 
     $sentencia->execute();
-    /* Esto nos regresa al listado de puestos */
+    $registro_recuperado=$sentencia->fetch(PDO::FETCH_LAZY);
+
+    /* Eliminando Foto */
+    if (isset($registro_recuperado["foto"]) && $registro_recuperado["foto"]!="") {
+        if (file_exists("./fotosEmpleados/".$registro_recuperado["foto"])) {
+            unlink("./fotosEmpleados/".$registro_recuperado["foto"]);
+        }
+    }
+    /* Eliminando CV.pdf */
+    if (isset($registro_recuperado["cv"]) && $registro_recuperado["cv"]!="") {
+        if (file_exists("./cvEmpleados/".$registro_recuperado["cv"])) {
+            unlink("./cvEmpleados/".$registro_recuperado["cv"]);
+        }
+    }
+
+    /* Sentencia para eliminar los datos del registro */
+    $sentencia=$conexion->prepare("DELETE FROM tbl_empleados WHERE id=:id");
+    $sentencia->bindParam(":id", $txtID);
+    $sentencia->execute();
     header("Location:index.php");
+    
 }
 
 /* -------------------------------------------------------- */
@@ -74,7 +92,7 @@ $lista_tbl_empleados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
                             <img width="50px" src="./fotosEmpleados/<?php echo $registro['foto'] ?>" class="img-fluid rounded" alt=""/>
                         </td>
                         <td>
-                            <a class="btn btn-danger" href="verpdf.php?docnom=<?php echo $registro['cv'] ?>" role="button" target="_blank"><i class="bi bi-file-pdf-fill"></i></a><!-- Boton editar -->
+                            <a class="btn btn-danger" href="<?php echo "./cvEmpleados/".$registro['cv'] ?>" role="button" target="_blank"><i class="bi bi-file-pdf-fill"></i></a><!-- Boton editar -->
                         </td>
                         <td><?php echo $registro['puesto'] ?></td>
                         <td><?php echo $registro['fechadeingreso'] ?></td>
