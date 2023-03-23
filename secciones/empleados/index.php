@@ -95,7 +95,7 @@ $lista_tbl_empleados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
                         <td><?php echo $registro['puesto'] ?></td>
                         <td><?php echo $registro['fechadeingreso'] ?></td>
                         <td>
-                            | <a name="" id="" class="btn btn-primary" href="#" role="button"><i class="bi bi-file-text-fill"></i></a><!-- Generar carta -->
+                            | <a name="" id="" class="btn btn-primary" href="carta_recomendacion.php?txtID=<?php echo $registro['id'] ?>" role="button" target="_blank"><i class="bi bi-file-text-fill"></i></a><!-- Generar carta -->
                             | <a class="btn btn-success" href="editar.php?txtID=<?php echo $registro['id'] ?>" role="button"><i class="bi bi-pencil-fill"></i></a><!-- Boton editar -->
                             | <a class="btn btn-danger" href="index.php?txtID=<?php echo $registro['id'] ?>" role="button"><i class="bi bi-trash3-fill"></i></a><!-- Boton eliminar -->
                         </td>

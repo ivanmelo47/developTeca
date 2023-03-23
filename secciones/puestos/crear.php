@@ -12,8 +12,12 @@ if ($_POST) {
     $sentencia->bindParam(":nombredelpuesto", $nombredelpuesto);
     /* Ejecucion de la sentencia (Es aqui donde finalmente se insertan los datos en la tabla) */
     $sentencia->execute();
-    /* Esto nos regresa al listado de puestos */
-    header("Location:index.php");
+
+    /* Mensaje de notificacion */
+    $mensaje="Registro creado!";
+    /* Esto nos concateta el mensaje al url y despues vuelve a cargar el index, con lo 
+    cual se imprime nuestro mensaje de confirmacion en pantalla */
+    header("Location:index.php?mensaje=".$mensaje);
 }
 ?> 
 

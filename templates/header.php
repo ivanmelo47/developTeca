@@ -2,7 +2,6 @@
 $url1="localhost";
 $url2="josueivanmelo.com";
 $url_base="http://$url1/developTeca/";
-/* $url_base="http://josueivanmelo.com/developTeca/"; */
 ?>
 
 <!doctype html>
@@ -19,11 +18,15 @@ $url_base="http://$url1/developTeca/";
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
-  <!-- Esta seccion de codigo se utiliza para paginar nuestras tablas(busquedas de datos dinamicas) -->
+  <!-- Uso de DataTables - Esta seccion de codigo se utiliza para paginar nuestras tablas(busquedas de datos dinamicas) -->
   <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
   <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
   <!-- /--------------------------------------------------------------------------------------------/ -->
+
+  <!-- Uso de Sweet alert para los mensajes emergentes -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- /---------------------------------------------/ -->
 
 </head>
 
@@ -54,3 +57,12 @@ $url_base="http://$url1/developTeca/";
   </nav>
 
   <main class="container">
+
+  <!-- Utilizamos este script para verificar si hay un mensaje -->
+  <!-- Se activa cuando se realiza la eliminacion de un registro! -->
+  <?php if(isset($_GET['mensaje'])) { ?>
+  <script>
+      Swal.fire({icon:"success", title:"<?php echo $_GET['mensaje']; ?>"});
+  </script>
+  <?php } ?>
+  <!-- /-----------------------------------------------------/ -->
