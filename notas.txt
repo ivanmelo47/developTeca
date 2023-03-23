@@ -1,1 +1,3 @@
 DIA: 03/22/2023 -- HORA: 5:42 PM -- ME QUEDE EN EL MINUTO: 4:02:47 / 5:49:56  
+
+Utilizando beyener realizar un criptograma de n caracteres. Hablar sobre mi. Todo en mayusculas sin valores numericos. Contrasena: LONGITUD DE CUATRO, SIN CARACTERES. El criptograma no tiene espacios. Modulo de 27.
