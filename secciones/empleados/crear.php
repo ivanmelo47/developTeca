@@ -129,9 +129,10 @@ $lista_tbl_puestos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
               <label for="fechadeingreso" class="form-label">Fecha de ingreso</label>
               <input type="date" class="form-control" name="fechadeingreso" id="fechadeingreso" aria-describedby="emailHelpId" placeholder="Fecha de ingreso">
             </div>
-            <!-- Boton agregar -->
-            <button type="submit" class="btn btn-success">Agregar Registro</button>
-            <a name="" id="" class="btn btn-primary" href="index.php" role="button">Cancelar</a>
+            <!-- Boton agregar puesto -->
+            <button type="submit" class="btn btn-success"><i class="bi bi-check-circle-fill"></i> Agregar</button>
+            <!-- Boton cancelar accion -->
+            <a name="" id="" class="btn btn-danger" href="index.php" role="button"><i class="bi bi-x-circle-fill"></i> Cancelar</a>
         </form>
     </div>
     <div class="card-footer text-muted"></div>

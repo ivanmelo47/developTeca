@@ -57,12 +57,10 @@ $lista_tbl_empleados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
 <!-- /--------------------------------------/ -->
 <div class="card">
     <div class="card-header">
-
         <a name="" id="" class="btn btn-primary" 
         href="crear.php" role="button">
-        Agregar registro
+        <i class="bi bi-person-plus-fill"></i> Agregar usuarios
         </a>
-
     </div>
     <div class="card-body">
         <!-- Tabla -->
@@ -92,13 +90,13 @@ $lista_tbl_empleados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
                             <img width="50px" src="./fotosEmpleados/<?php echo $registro['foto'] ?>" class="img-fluid rounded" alt=""/>
                         </td>
                         <td>
-                            <a class="btn btn-danger" href="<?php echo "./cvEmpleados/".$registro['cv'] ?>" role="button" target="_blank"><i class="bi bi-file-pdf-fill"></i></a><!-- Boton editar -->
+                            <a class="btn btn-danger" href="<?php echo "./cvEmpleados/".$registro['cv'] ?>" role="button" target="_blank"><i class="bi bi-file-pdf-fill"></i></a><!-- Boton visualizar PDF -->
                         </td>
                         <td><?php echo $registro['puesto'] ?></td>
                         <td><?php echo $registro['fechadeingreso'] ?></td>
                         <td>
                             | <a name="" id="" class="btn btn-primary" href="#" role="button"><i class="bi bi-file-text-fill"></i></a><!-- Generar carta -->
-                            | <a class="btn btn-info" href="editar.php?txtID=<?php echo $registro['id'] ?>" role="button"><i class="bi bi-pencil-fill"></i></a><!-- Boton editar -->
+                            | <a class="btn btn-success" href="editar.php?txtID=<?php echo $registro['id'] ?>" role="button"><i class="bi bi-pencil-fill"></i></a><!-- Boton editar -->
                             | <a class="btn btn-danger" href="index.php?txtID=<?php echo $registro['id'] ?>" role="button"><i class="bi bi-trash3-fill"></i></a><!-- Boton eliminar -->
                         </td>
                     </tr>

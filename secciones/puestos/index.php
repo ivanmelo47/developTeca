@@ -39,7 +39,7 @@ $lista_tbl_puestos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
     <div class="card-header">
     <a name="" id="" class="btn btn-primary" 
         href="crear.php" role="button">
-        Agregar registro
+        <i class="bi bi-person-plus-fill"></i> Agregar puesto
         </a>
     </div>
     <div class="card-body">
@@ -65,8 +65,8 @@ $lista_tbl_puestos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
                         <td><?php echo $registro['nombredelpuesto']; ?></td>
                         <!-- Botones |Editar||Eliminar| -->
                         <td>
-                        <a class="btn btn-info" href="editar.php?txtID=<?php echo $registro['id'] ?>" role="button">Editar</a>
-                            <a class="btn btn-danger" href="index.php?txtID=<?php echo $registro['id'] ?>" role="button">Eliminar</a>
+                            | <a class="btn btn-success" href="editar.php?txtID=<?php echo $registro['id'] ?>" role="button"><i class="bi bi-pencil-fill"></i></a><!-- Boton editar -->
+                            | <a class="btn btn-danger" href="index.php?txtID=<?php echo $registro['id'] ?>" role="button"><i class="bi bi-trash3-fill"></i></a><!-- Boton eliminar -->
                         </td>
                     </tr>
                 <?php } ?>    

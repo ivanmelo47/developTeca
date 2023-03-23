@@ -86,9 +86,9 @@ if ($_POST) {
                 class="form-control" name="correo" id="correo" aria-describedby="helpId" placeholder="Correo">
             </div>
             <!-- Boton aplicar cambios al usuario -->
-            <button type="submit" class="btn btn-success">Aplicar cambios</button>
+            <button type="submit" class="btn btn-success"><i class="bi bi-check-circle-fill"></i> Aplicar cambios</button>
             <!-- Boton cancelar accion -->
-            <a name="" id="" class="btn btn-primary" href="index.php" role="button">Cancelar</a>
+            <a name="" id="" class="btn btn-danger" href="index.php" role="button"><i class="bi bi-x-circle-fill"></i> Cancelar</a>
         </form>
     </div>
     <div class="card-footer text-muted"></div>

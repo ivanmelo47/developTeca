@@ -53,9 +53,9 @@ if ($_POST) {
                 class="form-control" name="correo" id="correo" aria-describedby="helpId" placeholder="Correo">
             </div>
             <!-- Boton agregar puesto -->
-            <button type="submit" class="btn btn-success">Agregar</button>
+            <button type="submit" class="btn btn-success"><i class="bi bi-check-circle-fill"></i> Agregar</button>
             <!-- Boton cancelar accion -->
-            <a name="" id="" class="btn btn-primary" href="index.php" role="button">Cancelar</a>
+            <a name="" id="" class="btn btn-danger" href="index.php" role="button"><i class="bi bi-x-circle-fill"></i> Cancelar</a>
         </form>
     </div>
     <div class="card-footer text-muted"></div>

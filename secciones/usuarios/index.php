@@ -35,9 +35,9 @@ $lista_tbl_usuarios=$sentencia->fetchAll(PDO::FETCH_ASSOC);
 <!-- /--------------------------------------/ -->
 <div class="card">
     <div class="card-header">
-    <a name="" id="" class="btn btn-primary" 
+        <a name="" id="" class="btn btn-primary" 
         href="crear.php" role="button">
-        Agregar usuarios
+        <i class="bi bi-person-plus-fill"></i> Agregar usuarios
         </a>
     </div>
     <div class="card-body">
@@ -64,8 +64,8 @@ $lista_tbl_usuarios=$sentencia->fetchAll(PDO::FETCH_ASSOC);
                         <td>****</td>
                         <td><?php echo $registro['correo']; ?></td>
                         <td>
-                            <a class="btn btn-info" href="editar.php?txtID=<?php echo $registro['id'] ?>" role="button">Editar</a>
-                            <a class="btn btn-danger" href="index.php?txtID=<?php echo $registro['id'] ?>" role="button">Eliminar</a>
+                            | <a class="btn btn-success" href="editar.php?txtID=<?php echo $registro['id'] ?>" role="button"><i class="bi bi-pencil-fill"></i></a><!-- Boton editar -->
+                            | <a class="btn btn-danger" href="index.php?txtID=<?php echo $registro['id'] ?>" role="button"><i class="bi bi-trash3-fill"></i></a><!-- Boton eliminar -->
                         </td>
                     </tr>
                 <?php } ?>

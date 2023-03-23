@@ -66,8 +66,7 @@ if ($_POST) {
   /* INTRUCCIONES ESPECIALES PARA INCLUIR ARCHIVOS EN EL FORMULARIO -> */
   $fecha_=new DateTime();
   /* -- INTRUCCIONES PARA CAMBIAR DE FOTO Y ELIMINAR LA ANTERIOR-- */
-  $foto=(isset($_FILES["foto"]["name"])?$_FILES["foto"]["name"]:"");
-
+    $foto=(isset($_FILES["foto"]["name"])?$_FILES["foto"]["name"]:"");
     $nombreArchivo_foto=($foto!='')?$fecha_->getTimestamp()."_".$_FILES["foto"]["name"]:"";
     $tmp_foto=$_FILES["foto"]["tmp_name"];
 
@@ -96,14 +95,34 @@ if ($_POST) {
   /* --INTRUCCIONES PARA CAMBIAR EL CV.PDF Y ELIMINAR EL ANTERIOR-- */
   $cv=(isset($_FILES["cv"]["name"])?$_FILES["cv"]["name"]:"");
   $nombreArchivo_cv=($cv!='')?$fecha_->getTimestamp()."_".$_FILES["cv"]["name"]:"";
-    $tmp_cv=$_FILES["cv"]["tmp_name"];
+  $tmp_cv=$_FILES["cv"]["tmp_name"];
+
     if ($tmp_cv!='') {
       move_uploaded_file($tmp_cv,"./cvEmpleados/".$nombreArchivo_cv);
+
+      /* Buscar el archivo relacionado con el empleado */
+      $sentencia=$conexion->prepare("SELECT cv FROM `tbl_empleados` WHERE id=:id");
+      $sentencia->bindParam(":id",$txtID); 
+      $sentencia->execute();
+      $registro_recuperado=$sentencia->fetch(PDO::FETCH_LAZY);
+
+      /* Eliminando CV.pdf */
+      if (isset($registro_recuperado["cv"]) && $registro_recuperado["cv"]!="") {
+          if (file_exists("./cvEmpleados/".$registro_recuperado["cv"])) {
+              unlink("./cvEmpleados/".$registro_recuperado["cv"]);
+          }
+      }
+
+      $sentencia=$conexion->prepare("UPDATE tbl_empleados SET cv=:cv WHERE id=:id");
+      $sentencia->bindParam(":cv", $nombreArchivo_cv);
+      $sentencia->bindParam(":id", $txtID);
+      $sentencia->execute();
     }
+      
 
   /* ----------------------------------------------------------------< */
 
-  //header("Location:index.php");
+  header("Location:index.php");
 }
 ?>
 
@@ -189,9 +208,10 @@ if ($_POST) {
               value="<?php echo $fechadeingreso; ?>"
               type="date" class="form-control" name="fechadeingreso" id="fechadeingreso" aria-describedby="emailHelpId" placeholder="Fecha de ingreso">
             </div>
-            <!-- Boton agregar -->
-            <button type="submit" class="btn btn-success">Actualizar Registro</button>
-            <a name="" id="" class="btn btn-primary" href="index.php" role="button">Cancelar</a>
+            <!-- Boton aplicar cambios al empleado -->
+            <button type="submit" class="btn btn-success"><i class="bi bi-check-circle-fill"></i> Aplicar cambios</button>
+            <!-- Boton cancelar accion -->
+            <a name="" id="" class="btn btn-danger" href="index.php" role="button"><i class="bi bi-x-circle-fill"></i> Cancelar</a>
         </form>
     </div>
     <div class="card-footer text-muted"></div>
