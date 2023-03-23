@@ -43,7 +43,7 @@ $lista_tbl_usuarios=$sentencia->fetchAll(PDO::FETCH_ASSOC);
     <div class="card-body">
         <!-- Tabla -->
         <div class="table-responsive-sm">
-            <table class="table">
+            <table class="table" id="tabla_id">
                 <!-- Columnas nombres -->
                 <thead>
                     <tr>

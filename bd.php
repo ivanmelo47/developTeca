@@ -7,10 +7,10 @@ $usuario = "root";
 $contrasenia = "";
 
 /* Base datos en sitio web */
-/* $servidor = 'db5012381931.hosting-data.io';
-$baseDeDatos = 'dbs10412547';
-$usuario = 'dbu5393113';
-$contrasenia = '140735@Abcd'; */
+/* $servidor = 'localhost';
+$baseDeDatos = 'u248102699_empleados';
+$usuario = 'u248102699_josueivan';
+$contrasenia = 'Q4LKwgvLFQej6mg'; */
 
 try {
     $conexion = new PDO("mysql:host=$servidor;dbname=$baseDeDatos", $usuario, $contrasenia);

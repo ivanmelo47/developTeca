@@ -59,13 +59,13 @@ $lista_tbl_empleados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
     <div class="card-header">
         <a name="" id="" class="btn btn-primary" 
         href="crear.php" role="button">
-        <i class="bi bi-person-plus-fill"></i> Agregar usuarios
+        <i class="bi bi-person-plus-fill"></i> Agregar empleado
         </a>
     </div>
     <div class="card-body">
         <!-- Tabla -->
         <div class="table-responsive-sm">
-            <table class="table">
+            <table class="table" id="tabla_id">
                 <thead>
                     <tr>
                         <th class="col">ID</th>

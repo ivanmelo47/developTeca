@@ -183,7 +183,7 @@ if ($_POST) {
             <div class="mb-3">
               <label for="cv" class="form-label">CV(PDF):</label>
               <br>
-              <a href=<?php echo "./cvEmpleados/".$cv; ?> target="_blank"><?php echo $cv; ?></a>
+              <a class="btn btn-danger" href="<?php echo "./cvEmpleados/".$registro['cv'] ?>" role="button" target="_blank"><i class="bi bi-file-pdf-fill"></i></a> <br><br><!-- Boton visualizar PDF -->
               <input type="file"
                 class="form-control" name="cv" id="cv" aria-describedby="helpId" placeholder="CV">
             </div>
