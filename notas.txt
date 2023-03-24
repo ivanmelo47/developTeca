@@ -10,3 +10,6 @@ BASE DE DATOS: u248102699_minube
 USUARIO: u248102699_admin
 CONTRASENA:4gHQU:J>@AJ?
 HOST:localhost:3306
+
+usuario: admin
+pass: 4gHQU:J>@AJ?
