@@ -1,7 +1,14 @@
 <?php
+session_start();
 $url1="localhost";
 $url2="josueivanmelo.com";
 $url_base="http://$url1/developTeca/";
+
+/* Esta seccion de codigo nos permite bloquear cualquier URL del sitio si antes no se ah iniciado sesion. */
+if (!isset($_SESSION['usuario'])) {
+  header("Location:".$url_base."/login.php");
+}
+
 ?>
 
 <!doctype html>
@@ -51,7 +58,7 @@ $url_base="http://$url1/developTeca/";
         <a class="nav-link" href="<?php echo $url_base;?>secciones/usuarios/">Usuarios</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Cerrar sesion</a>
+        <a class="nav-link" href="<?php echo $url_base;?>cerrar.php">Cerrar sesion</a>
       </li>
     </ul>
   </nav>

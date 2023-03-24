@@ -12,8 +12,12 @@ if (isset($_GET['txtID'])) {
     $sentencia->bindParam(":id", $txtID);
     /* Ejecucion de la sentencia (Es aqui donde finalmente se eliminan los datos en la tabla) */
     $sentencia->execute();
-    /* Esto nos regresa al listado de puestos */
-    header("Location:index.php");
+    
+    /* Mensaje de notificacion */
+    $mensaje="Registro eliminado!";
+    /* Esto nos concateta el mensaje al url y despues vuelve a cargar el index, con lo 
+    cual se imprime nuestro mensaje de confirmacion en pantalla */
+    header("Location:index.php?mensaje=".$mensaje);
 }
 
 /* -------------------------------------------------------- */
@@ -65,7 +69,7 @@ $lista_tbl_usuarios=$sentencia->fetchAll(PDO::FETCH_ASSOC);
                         <td><?php echo $registro['correo']; ?></td>
                         <td>
                             | <a class="btn btn-success" href="editar.php?txtID=<?php echo $registro['id'] ?>" role="button"><i class="bi bi-pencil-fill"></i></a><!-- Boton editar -->
-                            | <a class="btn btn-danger" href="index.php?txtID=<?php echo $registro['id'] ?>" role="button"><i class="bi bi-trash3-fill"></i></a><!-- Boton eliminar -->
+                            | <a class="btn btn-danger" href="javascript:borrar(<?php echo $registro['id'] ?>);" role="button"><i class="bi bi-trash3-fill"></i></a><!-- Boton eliminar -->
                         </td>
                     </tr>
                 <?php } ?>

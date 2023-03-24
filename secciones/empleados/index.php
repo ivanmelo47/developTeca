@@ -30,7 +30,12 @@ if (isset($_GET['txtID'])) {
     $sentencia=$conexion->prepare("DELETE FROM tbl_empleados WHERE id=:id");
     $sentencia->bindParam(":id", $txtID);
     $sentencia->execute();
-    header("Location:index.php");
+
+    /* Mensaje de notificacion */
+    $mensaje="Registro eliminado!";
+    /* Esto nos concateta el mensaje al url y despues vuelve a cargar el index, con lo 
+    cual se imprime nuestro mensaje de confirmacion en pantalla */
+    header("Location:index.php?mensaje=".$mensaje);
     
 }
 
@@ -97,7 +102,7 @@ $lista_tbl_empleados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
                         <td>
                             | <a name="" id="" class="btn btn-primary" href="carta_recomendacion.php?txtID=<?php echo $registro['id'] ?>" role="button" target="_blank"><i class="bi bi-file-text-fill"></i></a><!-- Generar carta -->
                             | <a class="btn btn-success" href="editar.php?txtID=<?php echo $registro['id'] ?>" role="button"><i class="bi bi-pencil-fill"></i></a><!-- Boton editar -->
-                            | <a class="btn btn-danger" href="index.php?txtID=<?php echo $registro['id'] ?>" role="button"><i class="bi bi-trash3-fill"></i></a><!-- Boton eliminar -->
+                            | <a class="btn btn-danger" href="javascript:borrar(<?php echo $registro['id'] ?>);" role="button"><i class="bi bi-trash3-fill"></i></a><!-- Boton eliminar -->
                         </td>
                     </tr>
                 <?php } ?>
