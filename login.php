@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+// Hola MUndo
+
 if ($_POST) {
     include("./bd.php");
 
